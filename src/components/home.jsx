@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import Track from './Track';
-// import FavService from './FavService';
+import FavService from '../FavService'
 
 function Home(props) {
 
@@ -39,10 +39,10 @@ function onSearch(event) {
 
 }
 
-// function onFavorites(music) {
-//     FavService.toggleFavorite(music);
-//     setMusics([...musics]);
-// }
+function onFavorites(music) {
+    FavService.toggleFavorite(music);
+    setMusics([...musics]);
+}
 
 return (
 <div>
@@ -76,32 +76,8 @@ return (
   {/* <h3>Aucun résultat pour cette recherche ...</h3> */}
   <h2>Résultats</h2>
   <div className="card-group search-results">
-   {/* {musics.map(music => {
-       return (
-           <div>
-               <div className="card w-50" style={{flex: 'initial'}}>
-                <div className="card-body text-left">
-                    <div className="media mb-2">
-                        <img className="align-self-center mr-2 w-25"
-                            src={music.album.cover} alt="" />
-                        <div className="media-body">
-                            <h5 className="card-title">{music.title}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{music.artist.name}/{music.album.title}</h6>
-                        </div>
-                    </div>
-                    <audio src={music.preview} className="w-100" controls></audio><br />
-                    <a href="#" className="btn btn-sm btn-danger"><i className="fas fa-heart"></i> Ajouter aux
-                        favoris</a>
-                </div>
-            </div>
-           </div>
-       );
-   })
-} */}
-
     {musics.map(music => (
-        // <Track key={music.id} music={music} onClick={onFavorites} />
-        <Track key={music.id} music={music}/>
+        <Track key={music.id} music={music} onClick={onFavorites} isFavorite={FavService.isFavorite(music)}/>
     ))}
 
   </div>
@@ -109,9 +85,6 @@ return (
 </div>
 );
 
-// function changeTitle(){
-
-// }
 }
 
 export default Home;

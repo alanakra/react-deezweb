@@ -10,6 +10,8 @@ function Track(props) {
 }
 
  const music = props.music;
+ const isFavorite = props.isFavorite;
+ const favBtnClass = isFavorite ? 'btn-outline-danger' : 'btn-danger';
  
  return (
 
@@ -23,8 +25,12 @@ function Track(props) {
       </div>
      </div>
      <audio src={music.preview} className="w-100" controls></audio><br />
-     <a href="#" onClick={onFavClick(music)} className="btn btn-sm btn-danger"><i className="fas fa-heart"></i> Ajouter aux
-      favoris</a>
+     <a href="#" onClick={onFavClick(music)} className={'btn btn-sm btn-danger ' + favBtnClass}>
+       {isFavorite
+           ? <><i className="fas fa-heart-broken"></i> Retirer des favoris</>
+           : <><i className="fas fa-heart"></i> Ajouter aux favoris</>
+       }
+   </a>
     </div>
    </div>
 

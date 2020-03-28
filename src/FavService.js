@@ -31,10 +31,11 @@ export default {
    },
   
    // Supprime un favori du localStorage
-   removeFavoriteFromStorage(music) {
+    removeFavoriteFromStorage(music) {
     const favorites = this.getFavoritesFromStorage()
     const musicIndex = favorites.findIndex(f => f.id === music.id)
     favorites.splice(musicIndex, 1)
-    window.localStorage.setItem(STORAGE_FAVORITE_KEY, JSON.stringify(favorites)
-   }
+    window.localStorage.setItem(STORAGE_FAVORITE_KEY, JSON.stringify(favorites))
+ }
+ 
 }
